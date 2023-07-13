@@ -71,7 +71,7 @@ include_once("config.php");
                                 $conn=mysqli_connect("localhost","root","","billing");
 									$sql = mysqli_query($conn, "SELECT * FROM billings where status='unpaid'");
 									while($row = mysqli_fetch_array($sql)){								                                
-									echo '<a href="admin.php?page=viewbill&&id='.$row['CompanyName'].'" class="collection-item">
+									echo '<a href="admin.php?page=viewbill&&id='.$row['id'].'" class="collection-item">
                                         <div class="row">
                                             <div class="col s6">
                                                 <p class="collections-title">'.$row['CompanyName'].'</p>                                              

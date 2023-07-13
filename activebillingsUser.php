@@ -69,22 +69,22 @@ include_once("config.php");
 									<ul id="projects-collection" class="collection">
 								<?php
                                 $conn=mysqli_connect("localhost","root","","billing");
-									$sql = mysqli_query($conn, "SELECT * FROM billings where user='".$_SESSION['login']."'");
+									$sql = mysqli_query($conn, "SELECT * FROM billings where CompanyName='".$_SESSION['cname']."'");
 									while($row = mysqli_fetch_array($sql)){								                                
-									echo'<a href="view-ticket-admin.php?id='.$row['id'].'"class="collection-item">
+									echo'<a href="user.php?page=viewbillUser&&id='.$row['id'].'"class="collection-item">
                                         <div class="row">
                                             <div class="col s6">
-                                                <p class="collections-title">'.$row['VisitorName'].'</p>                                              
+                                                <p class="collections-title">'.$row['CompanyName'].'</p>                                              
                                             </div>
                                             <div class="col s6">
-                                            <p class="collections-title">'.$row['MobileNo'].'</p>                                              
+                                            <p class="collections-title">'.$row['TotalAmount'].'</p>                                              
                                         </div>
                                             <div class="col s2">
                                             <span class="task-cat cyan">'.$row['status'].'</span></div>											
                                             <div class="col s2">
-                                            <span class="task-cat grey darken-3">'.$row['EmailAddress'].'</span></div>
+                                            <span class="task-cat grey darken-3">'.$row['Date'].'</span></div>
                                             <div class="col s2">
-                                            <span class="badge">'.$row['Date'].'</span></div>
+                                            <span class="badge">View</span></div>
                                             
                                         </div>
                                     </a>';

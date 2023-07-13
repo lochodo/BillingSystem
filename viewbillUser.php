@@ -147,7 +147,12 @@ $sql = mysqli_query($conn, "SELECT * FROM billings where id='$id' and status='un
                                 </tbody>
                             </table>
                         </div>
- 
+                        <div class="d-print-none mt-4">
+                            <div class="float-end">
+                                <a href="" class="btn btn-success me-1"><i class="fa fa-check"></i></a>
+                                <a href="#" class="btn btn-primary w-md">Pay</a>
+                            </div>
+                        </div>
                        
                         </div>
                     </div>

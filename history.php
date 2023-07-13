@@ -69,7 +69,7 @@ include_once("config.php");
 									<ul id="projects-collection" class="collection">
 								<?php
                                 $conn=mysqli_connect("localhost","root","","billing");
-									$sql = mysqli_query($conn, "SELECT * FROM billings where status='passed' and user='".$_SESSION['login']."'");
+									$sql = mysqli_query($conn, "SELECT * FROM billings where status='paid'");
                                     $count=mysqli_num_rows($sql);
                                     if($count>0)
                                     {
@@ -77,15 +77,15 @@ include_once("config.php");
 									echo'<a href="view-ticket-admin.php?id='.$row['id'].'"class="collection-item">
                                         <div class="row">
                                             <div class="col s6">
-                                                <p class="collections-title">'.$row['VisitorName'].'</p>                                              
+                                                <p class="collections-title">'.$row['CompanyName'].'</p>                                              
                                             </div>
                                             <div class="col s6">
-                                            <p class="collections-title">'.$row['MobileNo'].'</p>                                              
+                                            <p class="collections-title">'.$row['status'].'</p>                                              
                                         </div>
                                             <div class="col s2">
-                                            <span class="task-cat cyan">'.$row['status'].'</span></div>											
+                                            <span class="task-cat cyan">'.$row['Date'].'</span></div>											
                                             <div class="col s2">
-                                            <span class="task-cat grey darken-3">'.$row['EmailAddress'].'</span></div>
+                                            </div>
                                             <div class="col s2">
                                             <span class="badge">'.$row['Date'].'</span></div>
                                             

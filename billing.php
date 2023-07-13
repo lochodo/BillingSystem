@@ -20,7 +20,7 @@ $query->bindParam(':CompanyName',$cname,PDO::PARAM_STR);
 $query->bindParam(':AmountWaterSpent',$TotalSpentWater,PDO::PARAM_INT);
 $query->bindParam(':TotalWaterax',$wtax,PDO::PARAM_INT);
 $query->bindParam(':TotalWaterAmount',$TotalWater,PDO::PARAM_INT);
-$query->bindParam(':ElectricityAmountSpent',$TotalSpentWater,PDO::PARAM_INT);
+$query->bindParam(':ElectricityAmountSpent',$TotalSpentElectricity,PDO::PARAM_INT);
 $query->bindParam(':ElectricityTax',$etax,PDO::PARAM_INT);
 $query->bindParam(':TotalAmountElectricity',$TotalElectricity,PDO::PARAM_INT);
 $query->bindParam(':TotalAmount',$TotalAmount,PDO::PARAM_INT);

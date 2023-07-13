@@ -1,5 +1,5 @@
 <?php
-include("sessionAdmin.php");
+include("sessionUser.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -43,7 +43,6 @@ include("sessionAdmin.php");
            <div class="profile">
                 <img src="images/billing.webp" alt="profile_picture">
                 <h3><? echo $_SESSION['login']; ?></h3>
-                <p>System Admin</p>
             </div>
             <!--menu item-->
             <ul>
@@ -53,20 +52,15 @@ include("sessionAdmin.php");
                         <span class="item">Home</span>
                     </a>
                 </li>
+               
                 <li>
-                    <a href="admin.php?page=users">
-                        <span class="icon"><i class="fas fa-user-friends"></i></span>
-                        <span class="item">Users</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="admin.php?page=activeBillings">
+                    <a href="user.php?page=activeBillingsUser">
                         <span class="icon"><i class="fas fa-chart-line"></i></span>
                         <span class="item">Billings</span>
                     </a>
                 </li>
                 <li>
-                    <a href="admin.php?page=settings">
+                    <a href="user.php?page=settings">
                         <span class="icon"><i class="fas fa-cog"></i></span>
                         <span class="item">Settings</span>
                     </a>

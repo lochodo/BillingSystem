@@ -2,7 +2,7 @@
 session_start();
 if(isset($_SESSION['login']))
 {
-    if($_SESSION['role']=='visitor')
+    if($_SESSION['role']=='user')
     {
 
     }
