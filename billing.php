@@ -1,9 +1,11 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.js" integrity="sha512-8Z5++K1rB3U+USaLKG6oO8uWWBhdYsM3hmdirnOEWp8h2B1aOikj5zBzlXs8QOrvY9OxEnD2QDkbSKKpfqcIWw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <?php
 //error_reporting(0);
 include_once("config.php");
 if(isset($_POST['Bill']))
 {
 $cname=$_POST['user'];
+$_SESSION['cname']=$cname;
 $TotalAmount=$_POST['TotalAmount'];
 $TotalSpentWater=$_POST['TotalSpentWater']; 
 $wtax=$_POST['TotalTaxWater'];
@@ -26,11 +28,21 @@ $query->execute();
 $lastInsertId = $dbh->lastInsertId();
 if($lastInsertId)
 {
-echo "<script>alert('Billing Successfull. Confirmation sent to user email');</script>";
 ?>
-
-
+<script>
+ $.ajax({
+                          url:'mail.php',
+                          type: "POST",
+                          data:{cname:'cname'},
+                          success: function(data)
+                          {
+                            alert("Bill notification email sent to the billed user."); // show response from the php script.
+                          }
+                        });   
+</script>
 <?php
+echo "<script>alert('Billing Successfull. Confirmation sent to user email');</script>";
+
 }
 else 
 {
@@ -69,6 +81,7 @@ return true;
 }
 </script>
 <link rel="stylesheet" href="assets/css/style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <link rel="stylesheet" href="assets/css/slick.css">
 <link rel="stylesheet" href="assets/css/banner.css">
 <link rel="stylesheet" href="assets/css/font-awesome.min.css">

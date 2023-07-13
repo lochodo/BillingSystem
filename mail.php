@@ -1,13 +1,13 @@
 <?php
-         $id=$_POST['id'];
-		 $conn=mysqli_connect("localhost","root","","vms");
-		 $sql="select * from bookings where id='$id'";
+session_start();
+         $id=$_SESSION['cname'];
+		 $conn=mysqli_connect("localhost","root","","billing");
+		 $sql="select * from users where Firstname='$id'";
 		 $query=mysqli_query($conn,$sql);
 		 $row=mysqli_fetch_assoc($query);
-		 $office=$row['Office'];
-		 $date=$row['Date'];
-		 $name=$row['VisitorName'];
-		 $email=$row['EmailAddress'];
+		 $email=$row['username'];
+$date=Date('ddmmyy');
+
 
 use AfricasTalking\SDK\AfricasTalking;
 use PHPMailer\PHPMailer\PHPMailer;
@@ -24,15 +24,15 @@ try {
 	$mail->isSMTP();											
 	$mail->Host	 = 'smtp.gmail.com;';					
 	$mail->SMTPAuth = true;							
-	$mail->Username = 'winwritesofficial@gmail.com';				
-	$mail->Password = 'capdwmpqvrnwqnxc';						
+	$mail->Username = 'vincentbettoh@gmail.com';				
+	$mail->Password = 'ozbivcyqnaaclkdu';						
 	$mail->SMTPSecure = 'tls';							
 	$mail->Port	 = 587;
-	$mail->setFrom("vincentbettoh@gmail.com", "Visitor Management System");		
+	$mail->setFrom("lochodo@gmail.com", "Billing Management System");		
 	$mail->addAddress($email);	
 	$mail->isHTML(true);								
-	$mail->Subject = 'Subject';
-	$mail->Body="Dear $name Your appointment to visit $office office on Date:$date has been confirmed";
+	$mail->Subject = 'Monthly Bills';
+	$mail->Body="Dear $id Your monthly bill has been processed on Date:$date. Please visit your portal tom make payments";
 	$mail->AltBody = 'Body in plain text for non-HTML mail clients';
 	$mail->send();
 	echo "Mail has been sent successfully!";

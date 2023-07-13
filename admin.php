@@ -61,7 +61,7 @@ else{
                     </a>
                 </li>
                 <li>
-                    <a href="admin.php?page=activebillingsUser">
+                    <a href="admin.php?page=activeBillings">
                         <span class="icon"><i class="fas fa-user-friends"></i></span>
                         <span class="item">Active Bills</span>
                     </a>

@@ -69,24 +69,21 @@ include_once("config.php");
 									<ul id="projects-collection" class="collection">
 								<?php
                                 $conn=mysqli_connect("localhost","root","","billing");
-									$sql = mysqli_query($conn, "SELECT * FROM billings");
+									$sql = mysqli_query($conn, "SELECT * FROM billings where status='unpaid'");
 									while($row = mysqli_fetch_array($sql)){								                                
-									echo'<a href="view-ticket-admin.php?id='.$row['id'].'"class="collection-item">
+									echo '<a href="admin.php?page=viewbill&&id='.$row['CompanyName'].'" class="collection-item">
                                         <div class="row">
                                             <div class="col s6">
-                                                <p class="collections-title">'.$row['VisitorName'].'</p>                                              
+                                                <p class="collections-title">'.$row['CompanyName'].'</p>                                              
                                             </div>
                                             <div class="col s6">
-                                            <p class="collections-title">'.$row['MobileNo'].'</p>                                              
+                                                                                  
                                         </div>
                                             <div class="col s2">
                                             <span class="task-cat cyan">'.$row['status'].'</span></div>											
                                             <div class="col s2">
-                                            <span class="task-cat grey darken-3">'.$row['EmailAddress'].'</span></div>
-                                            <div class="col s2">
-                                            <span class="badge">'.$row['Date'].'</span></div>
-                                            
-                                        </div>
+                                            <span class="task-cat grey darken-3">'.$row['TotalAmount'].'</span></div>
+                                          
                                     </a>';
 									}
 									?>
