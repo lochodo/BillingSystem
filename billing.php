@@ -1,7 +1,7 @@
 <?php
 //error_reporting(0);
 include_once("config.php");
-if(isset($_POST['Bill']))
+if(isset($_POST['Book']))
 {
 $fname=$_POST['fullname'];
 $email=$_POST['emailid']; 
@@ -9,7 +9,7 @@ $mobile=$_POST['mobileno'];
 $office=$_POST['office'];
 $date=$_POST['date'];
 $user=$_SESSION['login'];
-$sql="INSERT INTO  billings(VisitorName,MobileNo,EmailAddress,Date,Office,user) VALUES(:fname,:mobile,:email,:date,:office,:user)";
+$sql="INSERT INTO  billings(CompanyName,EmailAddress,Date,status,AmountWaterSpent,TotalWaterax,TotalWaterAmount,ElectricityAmountSpent,ElectricityTax,TotalAmountElectricity,TotalAmount) VALUES(:fname,:mobile,:email,:date,:office,:user)";
 $query = $dbh->prepare($sql);
 $query->bindParam(':fname',$fname,PDO::PARAM_STR);
 $query->bindParam(':email',$email,PDO::PARAM_STR);
@@ -75,20 +75,54 @@ return true;
           <div class="signup_wrap">
             <div class="col-md-12 col-sm-6">
               <form  method="post" name="signup" onSubmit="return valid();">
-                <div class="form-group">
-                  <input type="text" class="form-control" name="fullname" placeholder="Full Name" required="required">
+<div class="form-group">
+                 <select class="form-control" name="user">
+<option>Select user to bill</option>
+<?php
+$conn=mysqli_connect("localhost","root","","billing");
+if($conn)
+{
+$check="select * from users where role='user'";
+$checkquery=mysqli_query($conn,$check);
+while($row=mysqli_fetch_assoc($checkquery))
+{
+echo "<option>".$row['Firstname']."</option>";
+}
+}
+else{
+echo "<option>There is connection error</option>";
+}
+?>
+</select>
+ </div>
+<div class="water" style="border:3px solid black">
+<h3>Water Billing</h3>                
+<div class="form-group">
+                  <input type="text" class="form-control" name="TotalSpentWater" placeholder="Amount Spent" required="required">
                 </div>
                       <div class="form-group">
-                  <input type="text" class="form-control" name="mobileno" placeholder="Mobile Number" maxlength="10" required="required">
+                  <input type="text" class="form-control" name="TotalTaxWater" placeholder="Water Tax" maxlength="10" required="required">
                 </div>
                 <div class="form-group">
-                  <input type="text" class="form-control" name="office" placeholder="Amount" required="required">
+                  <input type="email" class="form-control" name="TotalWater" id="emailid" onBlur="checkAvailability()" placeholder="Total Amount" required="required">
+                   <span id="user-availability-status" style="font-size:12px;"></span> 
                 </div>
-                  <input type="checkbox" id="terms_agree" required="required" checked="">
-                  <label for="terms_agree">I Agree with <a href="#">Terms and Conditions</a></label>
+                </div>
+<div class="water" style="border:3px solid black">
+<h3>Electricity Billing</h3>                
+<div class="form-group">
+                  <input type="text" class="form-control" name="TotalSpentElectricity" placeholder="Amount Spent" required="required">
+                </div>
+                      <div class="form-group">
+                  <input type="text" class="form-control" name="TotalTaxElectricity" placeholder="Electricity Tax" maxlength="10" required="required">
                 </div>
                 <div class="form-group">
-                  <input type="submit" value="Send" name="Bill" id="submit" class="btn btn-block">
+                  <input type="email" class="form-control" name="TotalElectricity" id="emailid" onBlur="checkAvailability()" placeholder="Total Amount" required="required">
+                   <span id="user-availability-status" style="font-size:12px;"></span> 
+                </div>
+                </div>
+<div class="form-group">
+                  <input type="submit" value="Bill" name="Bill" id="submit" class="btn btn-block">
                 </div>
               </form>
             </div>
