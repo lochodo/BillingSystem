@@ -1,27 +1,36 @@
 <?php
 //error_reporting(0);
 include_once("config.php");
-if(isset($_POST['Book']))
+if(isset($_POST['Bill']))
 {
-$fname=$_POST['fullname'];
-$email=$_POST['emailid']; 
-$mobile=$_POST['mobileno'];
-$office=$_POST['office'];
-$date=$_POST['date'];
-$user=$_SESSION['login'];
-$sql="INSERT INTO  billings(CompanyName,EmailAddress,Date,status,AmountWaterSpent,TotalWaterax,TotalWaterAmount,ElectricityAmountSpent,ElectricityTax,TotalAmountElectricity,TotalAmount) VALUES(:fname,:mobile,:email,:date,:office,:user)";
+$cname=$_POST['user'];
+$TotalAmount=$_POST['TotalAmount'];
+$TotalSpentWater=$_POST['TotalSpentWater']; 
+$wtax=$_POST['TotalTaxWater'];
+$TotalWater=$_POST['TotalWater'];
+$TotalSpentElectricity=$_POST['TotalSpentElectricity'];
+$etax=$_POST['TotalTaxElectricity'];
+$TotalElectricity=$_POST['TotalElectricity'];
+$sql="INSERT INTO  billings(CompanyName,AmountWaterSpent,TotalWaterax,TotalWaterAmount,ElectricityAmountSpent,ElectricityTax,TotalAmountElectricity,TotalAmount)
+ VALUES(:CompanyName,:AmountWaterSpent,:TotalWaterax,:TotalWaterAmount,:ElectricityAmountSpent,:ElectricityTax,:TotalAmountElectricity,:TotalAmount)";
 $query = $dbh->prepare($sql);
-$query->bindParam(':fname',$fname,PDO::PARAM_STR);
-$query->bindParam(':email',$email,PDO::PARAM_STR);
-$query->bindParam(':mobile',$mobile,PDO::PARAM_STR);
-$query->bindParam(':office',$office,PDO::PARAM_STR);
-$query->bindParam(':date',$date,PDO::PARAM_STR);
-$query->bindParam(':user',$user,PDO::PARAM_STR);
+$query->bindParam(':CompanyName',$cname,PDO::PARAM_STR);
+$query->bindParam(':AmountWaterSpent',$TotalSpentWater,PDO::PARAM_INT);
+$query->bindParam(':TotalWaterax',$wtax,PDO::PARAM_INT);
+$query->bindParam(':TotalWaterAmount',$TotalWater,PDO::PARAM_INT);
+$query->bindParam(':ElectricityAmountSpent',$TotalSpentWater,PDO::PARAM_INT);
+$query->bindParam(':ElectricityTax',$etax,PDO::PARAM_INT);
+$query->bindParam(':TotalAmountElectricity',$TotalElectricity,PDO::PARAM_INT);
+$query->bindParam(':TotalAmount',$TotalAmount,PDO::PARAM_INT);
 $query->execute();
 $lastInsertId = $dbh->lastInsertId();
 if($lastInsertId)
 {
-echo "<script>alert('Booking successfull. Wait for confirmation');</script>";
+echo "<script>alert('Billing Successfull. Confirmation sent to user email');</script>";
+?>
+
+
+<?php
 }
 else 
 {
@@ -86,6 +95,7 @@ $check="select * from users where role='user'";
 $checkquery=mysqli_query($conn,$check);
 while($row=mysqli_fetch_assoc($checkquery))
 {
+$_SESSION['mail']=$row['username'];
 echo "<option>".$row['Firstname']."</option>";
 }
 }
@@ -98,28 +108,32 @@ echo "<option>There is connection error</option>";
 <div class="water" style="border:3px solid black">
 <h3>Water Billing</h3>                
 <div class="form-group">
-                  <input type="text" class="form-control" name="TotalSpentWater" placeholder="Amount Spent" required="required">
+                  <input type="Number" class="form-control" name="TotalSpentWater" placeholder="Amount Spent" required="required">
                 </div>
                       <div class="form-group">
-                  <input type="text" class="form-control" name="TotalTaxWater" placeholder="Water Tax" maxlength="10" required="required">
+                  <input type="Number" class="form-control" name="TotalTaxWater" placeholder="Water Tax" maxlength="10" required="required">
                 </div>
                 <div class="form-group">
-                  <input type="email" class="form-control" name="TotalWater" id="emailid" onBlur="checkAvailability()" placeholder="Total Amount" required="required">
+                  <input type="Number" class="form-control" name="TotalWater" id="emailid" onBlur="checkAvailability()" placeholder="Total Amount" required="required">
                    <span id="user-availability-status" style="font-size:12px;"></span> 
                 </div>
                 </div>
 <div class="water" style="border:3px solid black">
 <h3>Electricity Billing</h3>                
 <div class="form-group">
-                  <input type="text" class="form-control" name="TotalSpentElectricity" placeholder="Amount Spent" required="required">
+                  <input type="Number" class="form-control" name="TotalSpentElectricity" placeholder="Amount Spent" required="required">
                 </div>
                       <div class="form-group">
-                  <input type="text" class="form-control" name="TotalTaxElectricity" placeholder="Electricity Tax" maxlength="10" required="required">
+                  <input type="Number" class="form-control" name="TotalTaxElectricity" placeholder="Electricity Tax" maxlength="10" required="required">
                 </div>
                 <div class="form-group">
-                  <input type="email" class="form-control" name="TotalElectricity" id="emailid" onBlur="checkAvailability()" placeholder="Total Amount" required="required">
+                  <input type="Number" class="form-control" name="TotalElectricity" id="emailid" onBlur="checkAvailability()" placeholder="Total Amount" required="required">
                    <span id="user-availability-status" style="font-size:12px;"></span> 
                 </div>
+                </div>
+<div class="form-group">
+                  <input type="Number" class="form-control" name="TotalAmount" id="emailid" onBlur="checkAvailability()" placeholder="Total Amount" required="required">
+                   <span id="user-availability-status" style="font-size:12px;"></span> 
                 </div>
 <div class="form-group">
                   <input type="submit" value="Bill" name="Bill" id="submit" class="btn btn-block">
