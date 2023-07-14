@@ -69,7 +69,7 @@ include_once("config.php");
 									<ul id="projects-collection" class="collection">
 								<?php
                                 $conn=mysqli_connect("localhost","root","","billing");
-									$sql = mysqli_query($conn, "SELECT * FROM billings where CompanyName='".$_SESSION['cname']."'");
+									$sql = mysqli_query($conn, "SELECT * FROM billings where status='unpaid' and CompanyName='".$_SESSION['cname']."'");
 									while($row = mysqli_fetch_array($sql)){								                                
 									echo'<a href="user.php?page=viewbillUser&&id='.$row['id'].'"class="collection-item">
                                         <div class="row">

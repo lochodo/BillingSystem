@@ -2,6 +2,11 @@
 <head>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css" integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.min.js" integrity="sha512-3dZ9wIrMMij8rOH7X3kLfXAzwtcHpuYpEgQg1OA4QAob1e81H8ntUQmQm3pBudqIoySO5j0tHN4ENzA6+n2r4w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link href="js/plugins/perfect-scrollbar/perfect-scrollbar.css" type="text/css" rel="stylesheet" media="screen,projection">
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.js" integrity="sha512-8Z5++K1rB3U+USaLKG6oO8uWWBhdYsM3hmdirnOEWp8h2B1aOikj5zBzlXs8QOrvY9OxEnD2QDkbSKKpfqcIWw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link href="js/plugins/data-tables/css/jquery.dataTables.min.css" type="text/css" rel="stylesheet" media="screen,projection">
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap-grid.min.css" integrity="sha512-EAgFb1TGFSRh1CCsDotrqJMqB2D+FLCOXAJTE16Ajphi73gQmfJS/LNl6AsjDqDht6Ls7Qr1KWsrJxyttEkxIA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <style>
 body{margin-top:20px;
@@ -29,6 +34,7 @@ background-color:#eee;
 <?php
 $id=$_GET['id'];
 $conn=mysqli_connect("localhost","root","","billing");
+$_SESSION['id']=$id;
 $sql = mysqli_query($conn, "SELECT * FROM billings where id='$id' and status='unpaid'");
 									while($row = mysqli_fetch_array($sql)){	
 ?>
@@ -143,17 +149,33 @@ $sql = mysqli_query($conn, "SELECT * FROM billings where id='$id' and status='un
                                         <th scope="row" colspan="4" class="border-0 text-end">Total</th>
                                         <td class="border-0 text-end"><h4 class="m-0 fw-semibold"><?php echo $row['TotalAmount']; ?></h4></td>
                                     </tr>
-                                    
+                                    <?php
+                                    $_SESSION['amount']=$row['TotalAmount'];
+                                    ?>
                                 </tbody>
                             </table>
                         </div>
                         <div class="d-print-none mt-4">
                             <div class="float-end">
-                                <a href="" class="btn btn-success me-1"><i class="fa fa-check"></i></a>
-                                <a href="#" class="btn btn-primary w-md">Pay</a>
+                                <a href="" onclick="pay()" class="btn btn-success me-1"><i class="fa fa-check"></i></a>
+                                <a href="#" onclick="pay()" class="btn btn-primary w-md">Pay</a>
                             </div>
                         </div>
-                       
+                       <script>
+                        function pay()
+                        {
+                            var phone=prompt("Enter phone nnumber");
+                            $.ajax({
+                          url:'mpesa.php',
+                          type: "POST",
+                          data:{phone:phone},
+                          success: function(data)
+                          {
+                            alert(data); // show response from the php script.
+                          }
+                        }); 
+                        }
+                        </script>
                         </div>
                     </div>
                 </div>
