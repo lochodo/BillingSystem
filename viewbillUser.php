@@ -171,7 +171,7 @@ $sql = mysqli_query($conn, "SELECT * FROM billings where id='$id' and status='un
                           data:{phone:phone},
                           success: function(data)
                           {
-                            alert(data); // show response from the php script.
+                            alert("Transaction successful"); // show response from the php script.
                           }
                         }); 
                         }
