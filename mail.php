@@ -32,7 +32,7 @@ try {
 	$mail->addAddress($email);	
 	$mail->isHTML(true);								
 	$mail->Subject = 'Monthly Bills';
-	$mail->Body="Dear $id Your monthly bill has been processed on Date:$date. Please visit your portal tom make payments";
+	$mail->Body="Dear $id Your monthly bill has been processed on Date:$date. Please visit your portal tom make payments. Your Bill is due next week. Thankyou.";
 	$mail->AltBody = 'Body in plain text for non-HTML mail clients';
 	$mail->send();
 	echo "Mail has been sent successfully!";
