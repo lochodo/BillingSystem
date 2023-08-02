@@ -1,4 +1,5 @@
 <?php
+    session_start();
 $username=$_POST['uname'];
 $password=$_POST['psw'];
 $userrole=$_POST['role'];
@@ -10,11 +11,10 @@ $count=mysqli_num_rows($query);
 echo $count;
 if($count==1)
 {
-    session_start();
     $_SESSION['cname']=$row['Firstname'];
     $_SESSION['login']=$username;
     $_SESSION['role']=$userrole;
-    header("location:$userrole.php");
+    echo "<script>location.replace('".$userrole.".php');</script>";
 }
 else
 {

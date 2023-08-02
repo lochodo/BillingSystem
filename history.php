@@ -74,7 +74,7 @@ include_once("config.php");
                                     if($count>0)
                                     {
 									while($row = mysqli_fetch_array($sql)){								                                
-									echo'<a href="view-ticket-admin.php?id='.$row['id'].'"class="collection-item">
+									echo'<a href="admin.php?page=viewbill&&id='.$row['id'].'"class="collection-item">
                                         <div class="row">
                                             <div class="col s6">
                                                 <p class="collections-title">'.$row['CompanyName'].'</p>                                              

@@ -73,12 +73,6 @@ else{
                     </a>
                 </li>
                 <li>
-                    <a href="admin.php?page=settings">
-                        <span class="icon"><i class="fas fa-cog"></i></span>
-                        <span class="item">Settings</span>
-                    </a>
-                </li>
-                <li>
                     <a href="logout.php">
                         <span class="icon"><i class="fas fa-cog"></i></span>
                         <span class="item">Logout</span>

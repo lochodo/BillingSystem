@@ -6,6 +6,6 @@ if(isset($_SESSION['login']))
 }
 else
 {
-    header("location:index.php");
+   echo "<script>location.replace('index.php');</script>";
 }
 ?>

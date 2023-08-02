@@ -54,15 +54,9 @@ include("sessionUser.php");
                 </li>
                
                 <li>
-                    <a href="user.php?page=activeBillingsUser">
+                    <a href="user.php?page=activebillingsUser">
                         <span class="icon"><i class="fas fa-chart-line"></i></span>
                         <span class="item">Billings</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="user.php?page=settings">
-                        <span class="icon"><i class="fas fa-cog"></i></span>
-                        <span class="item">Settings</span>
                     </a>
                 </li>
                 <li>

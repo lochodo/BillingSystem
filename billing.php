@@ -54,6 +54,21 @@ echo "<script>alert('Something went wrong. Please try again');</script>";
 
 
 <script>
+  function calculate()
+  {var ws=$("#ws").val();
+    var tax=20/100*ws;
+    $("#wt").val(tax);
+    var total=Number(ws)+Number(tax);
+    $("#watertotal").val(total);
+    var es=$("#es").val();
+    var etax=20/100*es;
+    $("#et").val(etax);
+    var etotal=Number(es)+Number(etax);
+    $("#electricitytotal").val(etotal);
+    var totalamount=etotal+total;
+    $("#TA").val(totalamount);
+    $("#btnsubmit").attr("disabled", false);
+  }
 function checkAvailability() {
 $("#loaderIcon").show();
 jQuery.ajax({
@@ -121,39 +136,40 @@ echo "<option>There is connection error</option>";
 <div class="water" style="border:3px solid black">
 <h3>Water Billing</h3>                
 <div class="form-group">
-                  <input type="Number" class="form-control" name="TotalSpentWater" placeholder="Amount Spent" required="required">
+                  <input type="Number" class="form-control" name="TotalSpentWater" id="ws" placeholder="Amount Spent" required="required">
                 </div>
                       <div class="form-group">
-                  <input type="Number" class="form-control" name="TotalTaxWater" placeholder="Water Tax" maxlength="10" required="required">
+                  <input type="Number" class="form-control" id="wt" name="TotalTaxWater" placeholder="Water Tax" maxlength="10" required="required" readonly>
                 </div>
                 <div class="form-group">
-                  <input type="Number" class="form-control" name="TotalWater" id="emailid" onBlur="checkAvailability()" placeholder="Total Amount" required="required">
+                  <input type="Number" class="form-control" id="watertotal" name="TotalWater" id="emailid" onBlur="checkAvailability()" placeholder="Total Amount" required="required" readonly>
                    <span id="user-availability-status" style="font-size:12px;"></span> 
                 </div>
                 </div>
 <div class="water" style="border:3px solid black">
 <h3>Electricity Billing</h3>                
 <div class="form-group">
-                  <input type="Number" class="form-control" name="TotalSpentElectricity" placeholder="Amount Spent" required="required">
+                  <input type="Number" class="form-control" id="es" name="TotalSpentElectricity" placeholder="Amount Spent" required="required">
                 </div>
                       <div class="form-group">
-                  <input type="Number" class="form-control" name="TotalTaxElectricity" placeholder="Electricity Tax" maxlength="10" required="required">
+                  <input type="Number" class="form-control" name="TotalTaxElectricity" id="et" placeholder="Electricity Tax" maxlength="10" required="required" readonly>
                 </div>
                 <div class="form-group">
-                  <input type="Number" class="form-control" name="TotalElectricity" id="emailid" onBlur="checkAvailability()" placeholder="Total Amount" required="required">
+                  <input type="Number" class="form-control" name="TotalElectricity" id="electricitytotal" onBlur="checkAvailability()" placeholder="Total Amount" required="required" readonly>
                    <span id="user-availability-status" style="font-size:12px;"></span> 
                 </div>
                 </div>
 <div class="form-group">
-                  <input type="Number" class="form-control" name="TotalAmount" id="emailid" onBlur="checkAvailability()" placeholder="Total Amount" required="required">
+                  <input type="Number" class="form-control" name="TotalAmount" id="TA" onBlur="checkAvailability()" placeholder="Total Amount" required="required" readonly>
                    <span id="user-availability-status" style="font-size:12px;"></span> 
                 </div>
 <div class="form-group">
-                  <input type="submit" value="Bill" name="Bill" id="submit" class="btn btn-block">
+  
+                  <input type="submit" value="Bill" name="Bill" id="btnsubmit" class="btn btn-block" disabled>
                 </div>
               </form>
             </div>
-            
+            <button id="calculate" class="btn btn-block" onclick="calculate()">Calculate</button>
           </div>
         </div>
       </div>
