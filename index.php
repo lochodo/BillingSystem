@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
-    <head><title>Billing Management System</title>
+    <head><title>Student Management System</title>
 <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
     <body>
         <div class="header">
-        <h1><img src="images/billing.webp" width="170" height="155" align="middle" style="border-radius:90px">Billing Management System</h1>
+        <h1><img src="images/avatar.png" width="170" height="155" align="middle" style="border-radius:90px">Student Management System</h1>
         <div class="nav">
             <ul>
                 <li class="active"><a href="index.php?page=Home">Home</a></li>
@@ -94,11 +94,6 @@ class="close" title="Close Modal">&times;</span>
     </div>
 
     <div class="container"><br>
-        <label for="uname"><b>Login as:</b></label>
-        <select name="role">
-            <option value="admin">Admin<option>
-            <option value="user">User<option>
-            </select></br>
       <label for="uname"><b>Username</b></label>
       <input type="text" placeholder="Enter Username" name="uname" required style="width:50%"><br>
       <label for="psw"><b>Password</b></label>
@@ -112,7 +107,7 @@ class="close" title="Close Modal">&times;</span>
 
     <div class="container" style="background-color:#f1f1f1">
       <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-      <span class="psw">Forgot <a href="signup.php">password?</a></span><br>
+      <span class="psw">Forgot <a href="resetpassword.php">password?</a></span><br>
       <span class="psw">Signup<a href="signup.php">Here</a></span>
     </div>
   </form>

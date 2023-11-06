@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="msapplication-tap-highlight" content="no">
-  <title>Tickets</title>
+  <title>Signup</title>
 <?php
 include_once("config.php");
 ?>
@@ -77,16 +77,23 @@ include_once("config.php");
         </div>
         <div class="row margin">
           <div class="input-field col s12">
-            <i class="mdi-action-lock-outline prefix"></i>
+            <i class="mdi-social-person-outline prefix"></i>
             <input name="fname" id="fname" type="text">
             <label for="password">Firstname</label>
           </div>
         </div> 
         <div class="row margin">
           <div class="input-field col s12">
-            <i class="mdi-action-lock-outline prefix"></i>
+            <i class="mdi-social-person-outline prefix"></i>
             <input name="lname" id="lname" type="text">
             <label for="password">Lastname</label>
+          </div>
+        </div> 
+        <div class="row margin">
+          <div class="input-field col s12">
+            <i class="mdi-social-person-outline prefix"></i>
+            <input name="regno" id="regno" type="text">
+            <label for="password">Registration number</label>
           </div>
         </div> 
         <div class="row margin">
@@ -106,14 +113,14 @@ include_once("config.php");
         <div class="row margin">
           <div class="input-field col s12">
             <i class="mdi-social-person-outline prefix"></i>
-            <input name="username" id="username" type="text" autofill="false">
+            <input name="username" id="username" type="email" autofill="false">
             <label for="username" class="center-align">Username</label>
           </div>
         </div>
           <div class="row margin">
           <div class="input-field col s12">
             <i class="mdi-action-lock-outline prefix"></i>
-            <input name="password" id="password" type="password">
+            <input name="password" id="password" type="password" autocomplete="false">
             <label for="password">New Password</label>
           </div>
           

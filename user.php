@@ -41,7 +41,7 @@ include("sessionUser.php");
         <div class="sidebar">
            <!--profile image & text-->
            <div class="profile">
-                <img src="images/billing.webp" alt="profile_picture">
+                <img src="images/avatar.png" alt="profile_picture">
                 <h3><? echo $_SESSION['login']; ?></h3>
             </div>
             <!--menu item-->
@@ -54,9 +54,9 @@ include("sessionUser.php");
                 </li>
                
                 <li>
-                    <a href="user.php?page=activebillingsUser">
+                    <a href="user.php?page=searchstudent">
                         <span class="icon"><i class="fas fa-chart-line"></i></span>
-                        <span class="item">Billings</span>
+                        <span class="item">Dashboard</span>
                     </a>
                 </li>
                 <li>

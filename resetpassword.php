@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="msapplication-tap-highlight" content="no">
-  <title>Tickets</title>
+  <title>reset password</title>
 <?php
 include_once("config.php");
 ?>
@@ -63,40 +63,30 @@ include_once("config.php");
 		
 	        <!--start container-->
         <div class="container">
-          <p class="caption">List of your past Bills</p>
+          <p class="caption">Reset password</p>
           <div class="divider"></div>
 									<div id="work-collections">
 									<ul id="projects-collection" class="collection">
-								<?php
-                                $conn=mysqli_connect("localhost","root","","billing");
-									$sql = mysqli_query($conn, "SELECT * FROM billings where status='unpaid'");
-                                    $count=mysqli_num_rows($sql);
-                                    if($count>0)
-                                    {
-									while($row = mysqli_fetch_array($sql)){								                                
-									echo'<a href="admin.php?page=viewbill&&id='.$row['id'].'"class="collection-item">
-                                        <div class="row">
-                                            <div class="col s6">
-                                                <p class="collections-title">'.$row['CompanyName'].'</p>                                              
-                                            </div>
-                                            <div class="col s6">
-                                            <p class="collections-title">'.$row['status'].'</p>                                              
-                                        </div>
-                                            <div class="col s2">
-                                            <span class="task-cat cyan">'.$row['Date'].'</span></div>											
-                                            <div class="col s2">
-                                            </div>
-                                            <div class="col s2">
-                                            <span class="badge">'.$row['Date'].'</span></div>
-                                            
-                                        </div>
-                                    </a>';
-									}
-                                }
-                                else{
-                                    echo "No past bills";
-                                }
-									?>
+                                    <div id="login-page" class="row">
+    <div class="col s12 z-depth-4 card-panel">
+      <form method="post" action="mail.php" class="login-form" id="form">
+        <div class="row">
+          <div class="input-field col s12 center">
+            <p class="center login-form-text">Reset password </p>
+          </div>
+        </div>
+        <div class="row margin">
+          <div class="input-field col s12">
+            <i class="mdi-social-person-outline prefix"></i>
+            <input name="email" id="email" type="email">
+            <label for="email">Email</label>
+          </div>
+        </div> 
+       
+    
+        </div> <div class="row">
+			<button onclick="" id="reset" class="btn waves-effect waves-light col s12" type="submit">Reset Password</button>
+          </div>
 									</ul>
 									</div>
             <div class="divider"></div>
@@ -109,7 +99,21 @@ include_once("config.php");
     </div>
   <!-- END MAIN -->
       </section>
-
+<script>
+$("#reset").on('click',function(e){
+  const $thisBtn,$form=$("#form"),form_data=$form.serialize();
+  $thisBtn.text("Reseting...");
+  $.ajax({
+    url:"mail.php",
+    type="POST",
+    data:formData,
+    success:function(data){
+      alert(data);
+      $thisBtn.text("reset")
+    }
+  })
+})
+</script>
 
   <!-- //////////////////////////////////////////////////////////////////////////// -->
 
